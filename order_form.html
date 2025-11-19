@@ -35,6 +35,11 @@
     details{background:var(--surface);border-radius:var(--radius);box-shadow:var(--elev-1);overflow:hidden;margin-bottom:12px;border:1px solid rgba(16,24,40,0.04);}
     summary{display:flex;align-items:center;justify-content:space-between;padding:14px 16px;cursor:pointer;list-style:none;font-weight:600;color:var(--on-surface);font-size:15px;}
     summary:hover{background:rgba(30,136,229,0.03);}
+    
+    /* Custom marker/arrow styling to make it obvious it expands */
+    summary::-webkit-details-marker { display: none; }
+    summary:after { content: "+"; font-size: 18px; color: var(--primary); font-weight: bold; }
+    details[open] summary:after { content: "−"; }
 
     summary .meta{display:flex;gap:12px;align-items:center;color:var(--muted);font-weight:500;font-size:13px;}
 
@@ -46,7 +51,6 @@
     .product .metaSmall{color:var(--muted);font-size:13px;}
 
     /* Right side (Price, Grind, Buttons) */
-    /* FIX: Added flex-wrap to ensure buttons don't get pushed off screen on mobile */
     .product .right{
         display:flex;
         align-items:center;
@@ -61,7 +65,6 @@
     .original-price{font-size:13px;color:var(--muted);text-decoration:line-through;margin-left:8px;}
 
     /* Grind select */
-    /* FIX: Ensure grind select doesn't break layout */
     .grind-select { margin-right: 4px; }
     .grind-select select{padding:8px 10px;border-radius:8px;border:1px solid rgba(16,24,40,0.06);background:transparent;color:var(--on-surface);font-size:13px; max-width: 160px;}
 
@@ -94,7 +97,6 @@
           justify-content:space-between;
           margin-top:8px;
       }
-      /* FIX: On mobile, make grind select fill width to push buttons to next line cleanly if needed, or fit nicely */
       .grind-select { width: 100%; order: -1; margin-bottom: 8px; }
       .grind-select select { width: 100%; max-width: none; }
       summary{padding:12px;}
@@ -150,7 +152,6 @@
       Telegram.WebApp.expand();
       user = Telegram.WebApp.initDataUnsafe?.user || {};
       
-      // Personalized greeting
       const greetingName = user.first_name || "Гость";
       document.getElementById('userName').textContent = `Привет, ${greetingName}! Выберите кофе ☕`;
 
@@ -192,14 +193,16 @@
           const catSummary = document.createElement('summary');
           catSummary.textContent = category;
           catDetails.appendChild(catSummary);
-          catDetails.open = true; // Keep first level open by default
+          
+          // REMOVED: catDetails.open = true; -> Now collapsed by default
 
           for (const [subcat, products] of Object.entries(subcats)) {
             const subDetails = document.createElement('details');
             const subSummary = document.createElement('summary');
             subSummary.textContent = subcat;
             subDetails.appendChild(subSummary);
-            subDetails.open = true;
+            
+            // REMOVED: subDetails.open = true; -> Now collapsed by default
 
             products.forEach(product => {
               const prodId = `prod_${productCounter++}`;
@@ -209,7 +212,6 @@
               const discountHtml = product.discount > 0 ?
                 `<span class="original-price">${product.price_original} ₽</span><span style="color:var(--muted);margin-left:4px;font-size:12px">-${product.discount}%</span>` : '';
 
-              // FIX: HTML Structure to include buttons explicitly
               prodDiv.innerHTML = `
                 <div class="left">
                   <h4>${product.name} - ${product.weight}г</h4>
@@ -244,12 +246,10 @@
                 type: product.type
               };
 
-              // FIX: Listen for grind changes and update cart state immediately
               const grindSelect = prodDiv.querySelector(`#grind_${prodId}`);
               if (grindSelect) {
                 grindSelect.addEventListener('change', (e) => {
                   cart[prodId].grind = e.target.value;
-                  // If item is in cart, refresh the display
                   if (cart[prodId].qty > 0) updateCart(); 
                 });
               }
@@ -268,7 +268,6 @@
         const item = cart[prodId];
         if (!item) return;
 
-        // FIX: Validation Logic
         if (delta > 0 && item.type === 'ground_coffee') {
             const grindSelect = document.querySelector(`#grind_${prodId}`);
             if (grindSelect && !grindSelect.value) {
@@ -276,7 +275,6 @@
                     Telegram.WebApp.showAlert('Пожалуйста, выберите помол перед добавлением.') : 
                     alert('Пожалуйста, выберите помол.');
                 
-                // Highlight the missing field
                 grindSelect.style.borderColor = 'red';
                 setTimeout(() => grindSelect.style.borderColor = 'rgba(16,24,40,0.06)', 2000);
                 return;
@@ -332,7 +330,6 @@
         if (user && user.first_name) name = user.first_name;
 
         try {
-            // FIX: Moved logic inside Try block so errors are caught
             const items = Object.values(cart).filter(item => item.qty > 0).map(item => {
                 if (item.type === 'ground_coffee' && !item.grind) {
                     throw new Error(`Укажите помол для: ${item.name}`);
@@ -357,7 +354,6 @@
             };
 
             Telegram.WebApp.sendData(JSON.stringify(data));
-            // Telegram.WebApp.close(); // Optional: close after send
         } catch (err) {
             Telegram.WebApp.showAlert(err.message);
         }

@@ -73,11 +73,27 @@
     .quantity button{border:0;background:transparent;padding:8px 12px;cursor:pointer;font-weight:700;color:var(--primary); min-width: 32px;}
     .quantity span{display:inline-block;padding:6px 4px;background:transparent;min-width:24px;text-align:center;font-weight:600;}
 
-    /* Cart */
+    /* Cart & Comment */
     #cart{margin-top:18px;background:var(--surface);padding:16px;border-radius:12px;box-shadow:var(--elev-2);border:1px solid rgba(16,24,40,0.04);}
     #cart h2{margin:0 0 12px 0;font-size:16px;color:var(--on-surface);}
     .cart-item{display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px dashed rgba(16,24,40,0.03);font-size:14px;color:var(--on-surface);}
     .cart-item:last-child{border-bottom:0;}
+
+    .comment-box { margin-top: 16px; margin-bottom: 8px; }
+    .comment-box label { display: block; font-size: 14px; font-weight: 600; color: var(--on-surface); margin-bottom: 6px; }
+    .comment-box textarea {
+        width: 100%;
+        padding: 12px;
+        border-radius: 8px;
+        border: 1px solid rgba(16,24,40,0.1);
+        background: #fbfdff;
+        font-family: inherit;
+        font-size: 14px;
+        resize: vertical;
+        box-sizing: border-box;
+        color: var(--on-surface);
+    }
+    .comment-box textarea:focus { outline: none; border-color: var(--primary); box-shadow: 0 0 0 3px rgba(30,136,229,0.1); }
 
     /* Compact Total Row */
     .total-row {
@@ -126,6 +142,11 @@
       <h2>🛒 Ваша корзина</h2>
       <ul id="cart_list" role="list" style="padding:0;margin:0;list-style:none;"></ul>
       
+      <div class="comment-box" id="commentContainer" style="display:none;">
+          <label for="orderComment">Комментарий к заказу:</label>
+          <textarea id="orderComment" rows="2" placeholder="Например: код домофона, пожелания по доставке..."></textarea>
+      </div>
+
       <div class="total-row">
           <span>Итого:</span>
           <span class="total-value"><span id="total">0</span> ₽</span>
@@ -154,9 +175,8 @@
         if (window.Telegram && window.Telegram.WebApp) {
             const tg = window.Telegram.WebApp;
             tg.ready();
-            tg.expand(); // Ensures full height
+            tg.expand(); 
 
-            // Check for user data safely
             if (tg.initDataUnsafe && tg.initDataUnsafe.user) {
                 user = tg.initDataUnsafe.user;
                 const name = user.first_name || user.username || "друг";
@@ -165,13 +185,11 @@
                 document.getElementById('userName').textContent = "Выберите кофе ☕";
             }
 
-            // Direct Submit setup - No more "MainButton" switching
             const submitBtn = document.getElementById('submitBtn');
             submitBtn.addEventListener('click', handleSubmit);
             
             renderMenu();
         } else {
-            // Fallback for browser testing
             document.getElementById('userName').textContent = "Режим предпросмотра";
             document.getElementById('submitBtn').addEventListener('click', handleSubmit);
             renderMenu();
@@ -181,13 +199,18 @@
     function updateButtonState() {
         const hasItems = Object.values(cart).some(item => item.qty > 0);
         const submitBtn = document.getElementById('submitBtn');
+        const commentContainer = document.getElementById('commentContainer');
+
         if(submitBtn) {
             submitBtn.disabled = !hasItems;
-            // Update text to show action
             submitBtn.textContent = hasItems ? `Оформить заказ` : "Корзина пуста";
         }
+        
         const clearBtn = document.getElementById('clearBtn');
         if(clearBtn) clearBtn.style.display = hasItems ? 'block' : 'none';
+        
+        // Show comment field only if there are items
+        if(commentContainer) commentContainer.style.display = hasItems ? 'block' : 'none';
     }
 
     function renderMenu() {
@@ -244,7 +267,7 @@
                 grind: '',
                 name: product.name,
                 price: product.price_final,
-                weight: product.weight,
+                weight: product.weight, // Weight stored here
                 type: product.type
               };
 
@@ -306,6 +329,7 @@
             if (grindSelect) grindSelect.value = '';
           });
           updateCart();
+          document.getElementById('orderComment').value = ''; // Clear comment
         }
       };
 
@@ -331,16 +355,26 @@
       function handleSubmit() {
         let name = 'Гость';
         if (user && user.first_name) name = user.first_name;
+        
+        const comment = document.getElementById('orderComment').value;
 
         try {
+            let totalWeight = 0;
+
             const items = Object.values(cart).filter(item => item.qty > 0).map(item => {
                 if (item.type === 'ground_coffee' && !item.grind) {
                     throw new Error(`Укажите помол для: ${item.name}`);
                 }
+                
+                // Calculate total weight for the order
+                const itemWeight = (item.weight || 0) * item.qty;
+                totalWeight += itemWeight;
+
                 return {
                     name: item.name,
                     quantity: item.qty,
-                    weight: item.weight,
+                    weight: item.weight, // Sending single item weight
+                    total_item_weight: itemWeight, // Sending total weight for this line item
                     price: item.price,
                     type: item.type,
                     grind_level: item.grind || undefined
@@ -352,8 +386,10 @@
             const data = {
                 name,
                 user_id: user?.id || null,
+                comment: comment, // Added comment
                 items,
-                total: parseFloat(document.getElementById('total').textContent) || 0
+                total_weight: totalWeight, // Added total order weight
+                total_price: parseFloat(document.getElementById('total').textContent) || 0
             };
 
             if (window.Telegram && window.Telegram.WebApp) {

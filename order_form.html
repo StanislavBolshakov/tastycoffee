@@ -24,7 +24,7 @@
     body{background:#f3f4f6;color:var(--on-surface);-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;}
     
     /* Container with padding for scrolling past bottom bars */
-    .container{max-width:960px;margin:20px auto;padding:16px;padding-bottom: 80px;box-sizing:border-box;}
+    .container{max-width:960px;margin:20px auto;padding:16px;padding-bottom: 40px;box-sizing:border-box;}
 
     header{display:flex;align-items:center;gap:16px;margin-bottom:18px;}
     .brand{display:flex;flex-direction:column;}
@@ -116,6 +116,10 @@
     #submitBtn:disabled{opacity:0.5;cursor:not-allowed;box-shadow:none;background:linear-gradient(180deg,#a9c8f8,#7db5f7);color:#fff;}
     #clearBtn{background:transparent;border:1px solid rgba(16,24,40,0.06);color:var(--muted);margin-top:12px;}
 
+    /* Footer */
+    .footer { text-align: center; margin-top: 32px; color: var(--muted); font-size: 12px; opacity: 0.7; }
+    .footer a { color: var(--muted); text-decoration: none; border-bottom: 1px dashed var(--muted); }
+
     /* Responsive */
     @media (max-width:640px){
       .product{flex-direction:column;align-items:flex-start;}
@@ -155,6 +159,10 @@
       <button id="submitBtn" disabled class="btn">Оформить заказ</button>
       <button id="clearBtn" onclick="clearCart()" style="display:none;" class="btn">Очистить</button>
     </article>
+
+    <footer class="footer">
+        Author Stanislav Bolshakov (tg: <a href="https://t.me/delirium">@delirium</a>)
+    </footer>
   </main>
 
   <script>
@@ -386,9 +394,9 @@
             const data = {
                 name,
                 user_id: user?.id || null,
-                comment: comment, // Added comment
+                comment: comment, 
                 items,
-                total_weight: totalWeight, // Added total order weight
+                total_weight: totalWeight, 
                 total_price: parseFloat(document.getElementById('total').textContent) || 0
             };
 

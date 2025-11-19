@@ -148,7 +148,7 @@
       
       <div class="comment-box" id="commentContainer" style="display:none;">
           <label for="orderComment">Комментарий к заказу:</label>
-          <textarea id="orderComment" rows="2" placeholder="Например: код домофона, пожелания по доставке..."></textarea>
+          <textarea id="orderComment" rows="2" placeholder="Например: шоколадочек бы еще"></textarea>
       </div>
 
       <div class="total-row">
@@ -161,7 +161,7 @@
     </article>
 
     <footer class="footer">
-        Author Stanislav Bolshakov (tg: <a href="https://t.me/delirium">@delirium</a>)
+        Разработка Stanislav Bolshakov (tg: <a href="https://t.me/delirium">@delirium</a>)
     </footer>
   </main>
 
@@ -188,9 +188,9 @@
             if (tg.initDataUnsafe && tg.initDataUnsafe.user) {
                 user = tg.initDataUnsafe.user;
                 const name = user.first_name || user.username || "друг";
-                document.getElementById('userName').textContent = `Привет, ${name}! Выберите кофе ☕`;
+                document.getElementById('userName').textContent = `Привет, ${name}! Выберите напитки ☕`;
             } else {
-                document.getElementById('userName').textContent = "Выберите кофе ☕";
+                document.getElementById('userName').textContent = "Выберите напитки ☕";
             }
 
             const submitBtn = document.getElementById('submitBtn');

@@ -42,10 +42,18 @@
       {
         "name": "Английский завтрак",
         "type": null,
-        "weight": 250,
-        "price_original": 390,
+        "weight": 100,
+        "price_original": 175,
         "discount": 0,
-        "price_final": 390
+        "price_final": 175
+      },
+      {
+        "name": "Английский завтрак",
+        "type": null,
+        "weight": 250,
+        "price_original": 360,
+        "discount": 0,
+        "price_final": 360
       },
       {
         "name": "Индия Ассам Дижу",
@@ -148,26 +156,10 @@
       {
         "name": "Вишнёвый",
         "type": null,
-        "weight": 100,
-        "price_original": 220,
-        "discount": 0,
-        "price_final": 220
-      },
-      {
-        "name": "Вишнёвый",
-        "type": null,
         "weight": 250,
         "price_original": 490,
         "discount": 0,
         "price_final": 490
-      },
-      {
-        "name": "Лесные ягоды",
-        "type": null,
-        "weight": 250,
-        "price_original": 470,
-        "discount": 0,
-        "price_final": 470
       },
       {
         "name": "Лесные ягоды",
@@ -186,20 +178,20 @@
         "price_final": 415
       },
       {
+        "name": "Масала",
+        "type": null,
+        "weight": 100,
+        "price_original": 190,
+        "discount": 0,
+        "price_final": 190
+      },
+      {
         "name": "Фруктовая смесь",
         "type": null,
         "weight": 100,
         "price_original": 195,
         "discount": 0,
         "price_final": 195
-      },
-      {
-        "name": "Фруктовая смесь",
-        "type": null,
-        "weight": 250,
-        "price_original": 435,
-        "discount": 0,
-        "price_final": 435
       },
       {
         "name": "Чай с чабрецом",
@@ -210,12 +202,28 @@
         "price_final": 365
       },
       {
+        "name": "Чай с чабрецом",
+        "type": null,
+        "weight": 100,
+        "price_original": 170,
+        "discount": 0,
+        "price_final": 170
+      },
+      {
         "name": "Чёрная смородина",
         "type": null,
         "weight": 250,
         "price_original": 425,
         "discount": 0,
         "price_final": 425
+      },
+      {
+        "name": "Чёрная смородина",
+        "type": null,
+        "weight": 100,
+        "price_original": 195,
+        "discount": 0,
+        "price_final": 195
       },
       {
         "name": "Эрл Грей",
@@ -420,6 +428,14 @@
       {
         "name": "Липовый",
         "type": null,
+        "weight": 100,
+        "price_original": 195,
+        "discount": 0,
+        "price_final": 195
+      },
+      {
+        "name": "Липовый",
+        "type": null,
         "weight": 250,
         "price_original": 420,
         "discount": 0,
@@ -432,14 +448,6 @@
         "price_original": 435,
         "discount": 0,
         "price_final": 435
-      },
-      {
-        "name": "Можжевельник",
-        "type": null,
-        "weight": 100,
-        "price_original": 195,
-        "discount": 0,
-        "price_final": 195
       }
     ],
     "Улун": [
@@ -665,17 +673,33 @@
         "name": "Гватемала Пампохила",
         "type": "bean_coffee",
         "weight": 250,
-        "price_original": 531.7,
-        "discount": 0,
-        "price_final": 531
+        "price_original": 818,
+        "discount": 30,
+        "price_final": 572
       },
       {
         "name": "Гватемала Пампохила",
         "type": "bean_coffee",
         "weight": 1000,
-        "price_original": 2047.5,
+        "price_original": 3150,
+        "discount": 30,
+        "price_final": 2205
+      },
+      {
+        "name": "Гватемала Эль Чорро",
+        "type": "bean_coffee",
+        "weight": 250,
+        "price_original": 515.5,
         "discount": 0,
-        "price_final": 2047
+        "price_final": 515
+      },
+      {
+        "name": "Гватемала Эль Чорро",
+        "type": "bean_coffee",
+        "weight": 1000,
+        "price_original": 1982.5,
+        "discount": 0,
+        "price_final": 1982
       },
       {
         "name": "Кения Гитуара",
@@ -708,22 +732,6 @@
         "price_original": 3150,
         "discount": 30,
         "price_final": 2205
-      },
-      {
-        "name": "Кения Мутуаини",
-        "type": "bean_coffee",
-        "weight": 250,
-        "price_original": 507,
-        "discount": 0,
-        "price_final": 507
-      },
-      {
-        "name": "Кения Мутуаини",
-        "type": "bean_coffee",
-        "weight": 1000,
-        "price_original": 1950,
-        "discount": 0,
-        "price_final": 1950
       },
       {
         "name": "Кения Ндиаини",
@@ -806,38 +814,6 @@
         "price_final": 3045
       },
       {
-        "name": "Колумбия Чирозо Каса Негра",
-        "type": "bean_coffee",
-        "weight": 250,
-        "price_original": 1118,
-        "discount": 30,
-        "price_final": 782
-      },
-      {
-        "name": "Колумбия Чирозо Каса Негра",
-        "type": "bean_coffee",
-        "weight": 1000,
-        "price_original": 4350,
-        "discount": 30,
-        "price_final": 3045
-      },
-      {
-        "name": "Коста-Рика Вара Бланка",
-        "type": "bean_coffee",
-        "weight": 250,
-        "price_original": 855,
-        "discount": 30,
-        "price_final": 598
-      },
-      {
-        "name": "Коста-Рика Вара Бланка",
-        "type": "bean_coffee",
-        "weight": 1000,
-        "price_original": 3300,
-        "discount": 30,
-        "price_final": 2310
-      },
-      {
         "name": "Коста-Рика Виста Аль Санто",
         "type": "bean_coffee",
         "weight": 250,
@@ -884,22 +860,6 @@
         "price_original": 3300,
         "discount": 30,
         "price_final": 2310
-      },
-      {
-        "name": "Коста-Рика Тематика",
-        "type": "bean_coffee",
-        "weight": 250,
-        "price_original": 893,
-        "discount": 30,
-        "price_final": 625
-      },
-      {
-        "name": "Коста-Рика Тематика",
-        "type": "bean_coffee",
-        "weight": 1000,
-        "price_original": 3450,
-        "discount": 30,
-        "price_final": 2415
       },
       {
         "name": "Коста-Рика Эль Мудо",
@@ -934,22 +894,6 @@
         "price_final": 2485
       },
       {
-        "name": "Коста-Рика Эстебан Замора",
-        "type": "bean_coffee",
-        "weight": 250,
-        "price_original": 880,
-        "discount": 30,
-        "price_final": 616
-      },
-      {
-        "name": "Коста-Рика Эстебан Замора",
-        "type": "bean_coffee",
-        "weight": 1000,
-        "price_original": 3400,
-        "discount": 30,
-        "price_final": 2380
-      },
-      {
         "name": "Эфиопия Мукера 120 часов",
         "type": "bean_coffee",
         "weight": 250,
@@ -1028,22 +972,6 @@
         "price_original": 3400,
         "discount": 30,
         "price_final": 2380
-      },
-      {
-        "name": "Эфиопия Челелекту",
-        "type": "bean_coffee",
-        "weight": 250,
-        "price_original": 768,
-        "discount": 30,
-        "price_final": 537
-      },
-      {
-        "name": "Эфиопия Челелекту",
-        "type": "bean_coffee",
-        "weight": 1000,
-        "price_original": 2950,
-        "discount": 30,
-        "price_final": 2065
       }
     ],
     "Моносорта для фильтра": [
@@ -1147,36 +1075,12 @@
         "name": "Колумбия Уила",
         "type": "bean_coffee",
         "weight": 1000,
-        "price_original": 2450,
-        "discount": 30,
-        "price_final": 1715
-      },
-      {
-        "name": "Колумбия Уила",
-        "type": "bean_coffee",
-        "weight": 250,
-        "price_original": 643,
-        "discount": 30,
-        "price_final": 450
-      },
-      {
-        "name": "Колумбия Уила",
-        "type": "ground_coffee",
-        "weight": 250,
-        "price_original": 643,
-        "discount": 30,
-        "price_final": 450
-      },
-      {
-        "name": "Руанда Киву",
-        "type": "bean_coffee",
-        "weight": 1000,
         "price_original": 1592.5,
         "discount": 0,
         "price_final": 1592
       },
       {
-        "name": "Руанда Киву",
+        "name": "Колумбия Уила",
         "type": "bean_coffee",
         "weight": 250,
         "price_original": 418,
@@ -1184,12 +1088,36 @@
         "price_final": 418
       },
       {
-        "name": "Руанда Киву",
+        "name": "Колумбия Уила",
         "type": "ground_coffee",
         "weight": 250,
         "price_original": 418,
         "discount": 0,
         "price_final": 418
+      },
+      {
+        "name": "Руанда Киву",
+        "type": "bean_coffee",
+        "weight": 1000,
+        "price_original": 2450,
+        "discount": 30,
+        "price_final": 1715
+      },
+      {
+        "name": "Руанда Киву",
+        "type": "bean_coffee",
+        "weight": 250,
+        "price_original": 643,
+        "discount": 30,
+        "price_final": 450
+      },
+      {
+        "name": "Руанда Киву",
+        "type": "ground_coffee",
+        "weight": 250,
+        "price_original": 643,
+        "discount": 30,
+        "price_final": 450
       },
       {
         "name": "Эфиопия Сидамо",
@@ -1218,23 +1146,225 @@
     ]
   },
   "КОФЕ ДЛЯ ЭСПРЕССО": {
-    "Микролоты для эспрессо": [
+    "Моносорта для эспрессо": [
       {
-        "name": "Боливия Лос Родригес Пиберри",
-        "type": "bean_coffee",
-        "weight": 250,
-        "price_original": 793,
-        "discount": 30,
-        "price_final": 555
-      },
-      {
-        "name": "Боливия Лос Родригес Пиберри",
+        "name": "Бразилия Серрадо",
         "type": "bean_coffee",
         "weight": 1000,
-        "price_original": 3050,
+        "price_original": 2300,
         "discount": 30,
-        "price_final": 2135
+        "price_final": 1610
       },
+      {
+        "name": "Бразилия Серрадо",
+        "type": "bean_coffee",
+        "weight": 250,
+        "price_original": 605,
+        "discount": 30,
+        "price_final": 423
+      },
+      {
+        "name": "Бразилия Серрадо",
+        "type": "ground_coffee",
+        "weight": 250,
+        "price_original": 605,
+        "discount": 30,
+        "price_final": 423
+      },
+      {
+        "name": "Гватемала Фуэго",
+        "type": "bean_coffee",
+        "weight": 1000,
+        "price_original": 2450,
+        "discount": 30,
+        "price_final": 1715
+      },
+      {
+        "name": "Гватемала Фуэго",
+        "type": "bean_coffee",
+        "weight": 250,
+        "price_original": 643,
+        "discount": 30,
+        "price_final": 450
+      },
+      {
+        "name": "Гватемала Фуэго",
+        "type": "ground_coffee",
+        "weight": 250,
+        "price_original": 643,
+        "discount": 30,
+        "price_final": 450
+      },
+      {
+        "name": "Кения Найроби",
+        "type": "bean_coffee",
+        "weight": 250,
+        "price_original": 693,
+        "discount": 30,
+        "price_final": 485
+      },
+      {
+        "name": "Кения Найроби",
+        "type": "bean_coffee",
+        "weight": 1000,
+        "price_original": 2650,
+        "discount": 30,
+        "price_final": 1855
+      },
+      {
+        "name": "Кения Найроби",
+        "type": "ground_coffee",
+        "weight": 250,
+        "price_original": 693,
+        "discount": 30,
+        "price_final": 485
+      },
+      {
+        "name": "Колумбия Богота",
+        "type": "bean_coffee",
+        "weight": 250,
+        "price_original": 643,
+        "discount": 30,
+        "price_final": 450
+      },
+      {
+        "name": "Колумбия Богота",
+        "type": "ground_coffee",
+        "weight": 250,
+        "price_original": 643,
+        "discount": 30,
+        "price_final": 450
+      },
+      {
+        "name": "Колумбия Богота",
+        "type": "bean_coffee",
+        "weight": 1000,
+        "price_original": 2450,
+        "discount": 30,
+        "price_final": 1715
+      },
+      {
+        "name": "Коста-Рика Сан-Хосе",
+        "type": "bean_coffee",
+        "weight": 250,
+        "price_original": 705,
+        "discount": 30,
+        "price_final": 493
+      },
+      {
+        "name": "Коста-Рика Сан-Хосе",
+        "type": "ground_coffee",
+        "weight": 250,
+        "price_original": 705,
+        "discount": 30,
+        "price_final": 493
+      },
+      {
+        "name": "Коста-Рика Сан-Хосе",
+        "type": "bean_coffee",
+        "weight": 1000,
+        "price_original": 2700,
+        "discount": 30,
+        "price_final": 1890
+      },
+      {
+        "name": "Руанда Кигали",
+        "type": "bean_coffee",
+        "weight": 250,
+        "price_original": 643,
+        "discount": 30,
+        "price_final": 450
+      },
+      {
+        "name": "Руанда Кигали",
+        "type": "ground_coffee",
+        "weight": 250,
+        "price_original": 643,
+        "discount": 30,
+        "price_final": 450
+      },
+      {
+        "name": "Руанда Кигали",
+        "type": "bean_coffee",
+        "weight": 1000,
+        "price_original": 2450,
+        "discount": 30,
+        "price_final": 1715
+      },
+      {
+        "name": "Эфиопия Гуджи",
+        "type": "bean_coffee",
+        "weight": 250,
+        "price_original": 718,
+        "discount": 30,
+        "price_final": 502
+      },
+      {
+        "name": "Эфиопия Гуджи",
+        "type": "ground_coffee",
+        "weight": 250,
+        "price_original": 718,
+        "discount": 30,
+        "price_final": 502
+      },
+      {
+        "name": "Эфиопия Гуджи",
+        "type": "bean_coffee",
+        "weight": 1000,
+        "price_original": 2750,
+        "discount": 30,
+        "price_final": 1925
+      },
+      {
+        "name": "Эфиопия Иргачефф",
+        "type": "bean_coffee",
+        "weight": 1000,
+        "price_original": 2400,
+        "discount": 30,
+        "price_final": 1680
+      },
+      {
+        "name": "Эфиопия Иргачефф",
+        "type": "bean_coffee",
+        "weight": 250,
+        "price_original": 630,
+        "discount": 30,
+        "price_final": 441
+      },
+      {
+        "name": "Эфиопия Иргачефф",
+        "type": "ground_coffee",
+        "weight": 250,
+        "price_original": 630,
+        "discount": 30,
+        "price_final": 441
+      },
+      {
+        "name": "Эфиопия Оромия",
+        "type": "bean_coffee",
+        "weight": 1000,
+        "price_original": 2600,
+        "discount": 30,
+        "price_final": 1820
+      },
+      {
+        "name": "Эфиопия Оромия",
+        "type": "bean_coffee",
+        "weight": 250,
+        "price_original": 680,
+        "discount": 30,
+        "price_final": 476
+      },
+      {
+        "name": "Эфиопия Оромия",
+        "type": "ground_coffee",
+        "weight": 250,
+        "price_original": 680,
+        "discount": 30,
+        "price_final": 476
+      }
+    ],
+    "Микролоты для эспрессо": [
       {
         "name": "Бразилия Трес-Понтас",
         "type": "bean_coffee",
@@ -1282,6 +1412,22 @@
         "price_original": 3000,
         "discount": 30,
         "price_final": 2100
+      },
+      {
+        "name": "Гватемала Сиелито",
+        "type": "bean_coffee",
+        "weight": 250,
+        "price_original": 507,
+        "discount": 0,
+        "price_final": 507
+      },
+      {
+        "name": "Гватемала Сиелито",
+        "type": "bean_coffee",
+        "weight": 1000,
+        "price_original": 1950,
+        "discount": 0,
+        "price_final": 1950
       },
       {
         "name": "Кения Гачата",
@@ -1492,224 +1638,6 @@
         "price_final": 1960
       }
     ],
-    "Моносорта для эспрессо": [
-      {
-        "name": "Бразилия Серрадо",
-        "type": "bean_coffee",
-        "weight": 1000,
-        "price_original": 2300,
-        "discount": 30,
-        "price_final": 1610
-      },
-      {
-        "name": "Бразилия Серрадо",
-        "type": "bean_coffee",
-        "weight": 250,
-        "price_original": 605,
-        "discount": 30,
-        "price_final": 423
-      },
-      {
-        "name": "Бразилия Серрадо",
-        "type": "ground_coffee",
-        "weight": 250,
-        "price_original": 605,
-        "discount": 30,
-        "price_final": 423
-      },
-      {
-        "name": "Гватемала Фуэго",
-        "type": "bean_coffee",
-        "weight": 1000,
-        "price_original": 2450,
-        "discount": 30,
-        "price_final": 1715
-      },
-      {
-        "name": "Гватемала Фуэго",
-        "type": "bean_coffee",
-        "weight": 250,
-        "price_original": 643,
-        "discount": 30,
-        "price_final": 450
-      },
-      {
-        "name": "Гватемала Фуэго",
-        "type": "ground_coffee",
-        "weight": 250,
-        "price_original": 643,
-        "discount": 30,
-        "price_final": 450
-      },
-      {
-        "name": "Кения Найроби",
-        "type": "bean_coffee",
-        "weight": 250,
-        "price_original": 693,
-        "discount": 30,
-        "price_final": 485
-      },
-      {
-        "name": "Кения Найроби",
-        "type": "bean_coffee",
-        "weight": 1000,
-        "price_original": 2650,
-        "discount": 30,
-        "price_final": 1855
-      },
-      {
-        "name": "Кения Найроби",
-        "type": "ground_coffee",
-        "weight": 250,
-        "price_original": 693,
-        "discount": 30,
-        "price_final": 485
-      },
-      {
-        "name": "Колумбия Богота",
-        "type": "bean_coffee",
-        "weight": 250,
-        "price_original": 643,
-        "discount": 30,
-        "price_final": 450
-      },
-      {
-        "name": "Колумбия Богота",
-        "type": "ground_coffee",
-        "weight": 250,
-        "price_original": 643,
-        "discount": 30,
-        "price_final": 450
-      },
-      {
-        "name": "Колумбия Богота",
-        "type": "bean_coffee",
-        "weight": 1000,
-        "price_original": 2450,
-        "discount": 30,
-        "price_final": 1715
-      },
-      {
-        "name": "Коста-Рика Сан-Хосе",
-        "type": "bean_coffee",
-        "weight": 250,
-        "price_original": 705,
-        "discount": 30,
-        "price_final": 493
-      },
-      {
-        "name": "Коста-Рика Сан-Хосе",
-        "type": "ground_coffee",
-        "weight": 250,
-        "price_original": 705,
-        "discount": 30,
-        "price_final": 493
-      },
-      {
-        "name": "Коста-Рика Сан-Хосе",
-        "type": "bean_coffee",
-        "weight": 1000,
-        "price_original": 2700,
-        "discount": 30,
-        "price_final": 1890
-      },
-      {
-        "name": "Руанда Кигали",
-        "type": "bean_coffee",
-        "weight": 250,
-        "price_original": 643,
-        "discount": 30,
-        "price_final": 450
-      },
-      {
-        "name": "Руанда Кигали",
-        "type": "ground_coffee",
-        "weight": 250,
-        "price_original": 643,
-        "discount": 30,
-        "price_final": 450
-      },
-      {
-        "name": "Руанда Кигали",
-        "type": "bean_coffee",
-        "weight": 1000,
-        "price_original": 2450,
-        "discount": 30,
-        "price_final": 1715
-      },
-      {
-        "name": "Эфиопия Гуджи",
-        "type": "bean_coffee",
-        "weight": 250,
-        "price_original": 466.7,
-        "discount": 0,
-        "price_final": 466
-      },
-      {
-        "name": "Эфиопия Гуджи",
-        "type": "ground_coffee",
-        "weight": 250,
-        "price_original": 466.7,
-        "discount": 0,
-        "price_final": 466
-      },
-      {
-        "name": "Эфиопия Гуджи",
-        "type": "bean_coffee",
-        "weight": 1000,
-        "price_original": 1787.5,
-        "discount": 0,
-        "price_final": 1787
-      },
-      {
-        "name": "Эфиопия Иргачефф",
-        "type": "bean_coffee",
-        "weight": 1000,
-        "price_original": 2400,
-        "discount": 30,
-        "price_final": 1680
-      },
-      {
-        "name": "Эфиопия Иргачефф",
-        "type": "bean_coffee",
-        "weight": 250,
-        "price_original": 630,
-        "discount": 30,
-        "price_final": 441
-      },
-      {
-        "name": "Эфиопия Иргачефф",
-        "type": "ground_coffee",
-        "weight": 250,
-        "price_original": 630,
-        "discount": 30,
-        "price_final": 441
-      },
-      {
-        "name": "Эфиопия Оромия",
-        "type": "bean_coffee",
-        "weight": 1000,
-        "price_original": 2600,
-        "discount": 30,
-        "price_final": 1820
-      },
-      {
-        "name": "Эфиопия Оромия",
-        "type": "bean_coffee",
-        "weight": 250,
-        "price_original": 680,
-        "discount": 30,
-        "price_final": 476
-      },
-      {
-        "name": "Эфиопия Оромия",
-        "type": "ground_coffee",
-        "weight": 250,
-        "price_original": 680,
-        "discount": 30,
-        "price_final": 476
-      }
-    ],
     "Кофе без кофеина": [
       {
         "name": "Колумбия Декаф",
@@ -1833,9 +1761,9 @@
         "name": "Гватемала Сантьяго",
         "type": null,
         "weight": 794,
-        "price_original": 1690,
+        "price_original": 1680,
         "discount": 0,
-        "price_final": 1690
+        "price_final": 1680
       },
       {
         "name": "Индонезия Суматра Гайо",
@@ -1865,9 +1793,9 @@
         "name": "Колумбия Уила",
         "type": null,
         "weight": 797,
-        "price_original": 1740,
+        "price_original": 1720,
         "discount": 0,
-        "price_final": 1740
+        "price_final": 1720
       },
       {
         "name": "Руанда Киву",
@@ -1899,9 +1827,9 @@
         "name": "Бэрри",
         "type": null,
         "weight": 540,
-        "price_original": 1060,
+        "price_original": 1080,
         "discount": 0,
-        "price_final": 1060
+        "price_final": 1080
       },
       {
         "name": "Гватемала Сантьяго",
@@ -1973,17 +1901,17 @@
         "name": "Бэрри",
         "type": null,
         "weight": 173,
-        "price_original": 380,
+        "price_original": 390,
         "discount": 0,
-        "price_final": 380
+        "price_final": 390
       },
       {
         "name": "Гватемала Сантьяго",
         "type": null,
         "weight": 180,
-        "price_original": 420,
+        "price_original": 410,
         "discount": 0,
-        "price_final": 420
+        "price_final": 410
       },
       {
         "name": "Индонезия Суматра Гайо",
@@ -2068,12 +1996,28 @@
         "price_final": 500
       },
       {
+        "name": "Кения Рианьяги",
+        "type": null,
+        "weight": 180,
+        "price_original": 500,
+        "discount": 0,
+        "price_final": 500
+      },
+      {
         "name": "Коста-Рика Дон Эли Фанки",
         "type": null,
         "weight": 180,
         "price_original": 560,
         "discount": 0,
         "price_final": 560
+      },
+      {
+        "name": "Коста-Рика Лос Мадригаль",
+        "type": null,
+        "weight": 178,
+        "price_original": 540,
+        "discount": 0,
+        "price_final": 540
       },
       {
         "name": "Коста-Рика Тематика",
@@ -2092,14 +2036,6 @@
         "price_final": 560
       },
       {
-        "name": "Эфиопия Бибиса",
-        "type": null,
-        "weight": 179,
-        "price_original": 490,
-        "discount": 0,
-        "price_final": 490
-      },
-      {
         "name": "Эфиопия Исаак Тесфай",
         "type": null,
         "weight": 181,
@@ -2109,14 +2045,6 @@
       },
       {
         "name": "Эфиопия Мукера 120 часов",
-        "type": null,
-        "weight": 180,
-        "price_original": 540,
-        "discount": 0,
-        "price_final": 540
-      },
-      {
-        "name": "Эфиопия Мукера 200 часов",
         "type": null,
         "weight": 180,
         "price_original": 540,
@@ -2146,14 +2074,6 @@
         "price_original": 540,
         "discount": 0,
         "price_final": 540
-      },
-      {
-        "name": "Эфиопия Челелекту",
-        "type": null,
-        "weight": 180,
-        "price_original": 490,
-        "discount": 0,
-        "price_final": 490
       }
     ],
     "НАБОРЫ ДРИПОВ": [
@@ -2269,25 +2189,25 @@
         "name": "Хани",
         "type": "bean_coffee",
         "weight": 250,
-        "price_original": 643,
-        "discount": 30,
-        "price_final": 450
+        "price_original": 418,
+        "discount": 0,
+        "price_final": 418
       },
       {
         "name": "Хани",
         "type": "ground_coffee",
         "weight": 250,
-        "price_original": 643,
-        "discount": 30,
-        "price_final": 450
+        "price_original": 418,
+        "discount": 0,
+        "price_final": 418
       },
       {
         "name": "Хани",
         "type": "bean_coffee",
         "weight": 1000,
-        "price_original": 2450,
-        "discount": 30,
-        "price_final": 1715
+        "price_original": 1592.5,
+        "discount": 0,
+        "price_final": 1592
       }
     ]
   },
@@ -2361,9 +2281,9 @@
         "name": "Эфиопия Гуджи",
         "type": null,
         "weight": 82,
-        "price_original": 280,
+        "price_original": 290,
         "discount": 0,
-        "price_final": 280
+        "price_final": 290
       },
       {
         "name": "Эфиопия Оромия",
@@ -2395,9 +2315,9 @@
         "name": "Колумбия Богота",
         "type": null,
         "weight": 370,
-        "price_original": 1030,
+        "price_original": 1040,
         "discount": 0,
-        "price_final": 1030
+        "price_final": 1040
       },
       {
         "name": "Кэнди",
@@ -2451,9 +2371,9 @@
         "name": "Эфиопия Оромия",
         "type": null,
         "weight": 370,
-        "price_original": 1050,
+        "price_original": 1080,
         "discount": 0,
-        "price_final": 1050
+        "price_final": 1080
       }
     ],
     "Наборы капсул Nespresso": [
@@ -2486,12 +2406,20 @@
         "price_final": 750
       },
       {
+        "name": "Колумбия Декаф",
+        "type": null,
+        "weight": 97,
+        "price_original": 910,
+        "discount": 0,
+        "price_final": 910
+      },
+      {
         "name": "Фанки",
         "type": null,
         "weight": 97,
-        "price_original": 830,
+        "price_original": 850,
         "discount": 0,
-        "price_final": 830
+        "price_final": 850
       },
       {
         "name": "Эфиопия Сидамо",

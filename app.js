@@ -60,7 +60,7 @@ async function initWebApp() {
         
         // Load menu data asynchronously
         try {
-            const response = await fetch('menu.json');  // Adjust path if needed (e.g., './data/menu.json')
+            const response = await fetch('https://stanislavbolshakov.github.io/tastycoffee/menu.json');
             if (!response.ok) {
                 throw new Error('Failed to load menu data');
             }
@@ -70,7 +70,7 @@ async function initWebApp() {
         } catch (error) {
             console.error('Error loading menu:', error);
             // Fallback: Show an error message or use hardcoded data
-            document.getElementById('menu').innerHTML = '<p style="color: red; text-align: center;">Ошибка загрузки меню. Попробуйте позже.</p>';
+            document.getElementById('menu').innerHTML = `<p style="color: red; text-align: center;">Ошибка загрузки меню. Попробуйте позже.<br><small style="font-size:11px;">${error.message}</small></p>`;
         }
     } else {
         document.getElementById('userName').textContent = "Режим предпросмотра";
@@ -78,14 +78,14 @@ async function initWebApp() {
         
         // Load menu data (same try-catch as above)
         try {
-            const response = await fetch('menu.json');
+            const response = await fetch('https://stanislavbolshakov.github.io/tastycoffee/menu.json');
             if (!response.ok) throw new Error('Failed to load menu data');
             menuData = await response.json();
             displayMetadata(); // Display metadata
             renderMenu();
         } catch (error) {
             console.error('Error loading menu:', error);
-            document.getElementById('menu').innerHTML = '<p style="color: red; text-align: center;">Ошибка загрузки меню. Попробуйте позже.</p>';
+            document.getElementById('menu').innerHTML = `<p style="color: red; text-align: center;">Ошибка загрузки меню. Попробуйте позже.<br><small style="font-size:11px;">${error.message}</small></p>`;
         }
     }
 }

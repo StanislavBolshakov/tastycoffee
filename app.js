@@ -1,12 +1,12 @@
 let cart = {};
 let productCounter = 0;
 let user = null;
-let menuData = null;  // Will be loaded dynamically
+let menuData = null;
 const MAX_QTY = 10;
 const GRIND_LEVELS = [
-  {value: "грубый", text: "Грубый (Френч-пресс)"},
-  {value: "средний", text: "Средний (Дрип/Пуровер)"},
-  {value: "мелкий", text: "Мелкий (Эспрессо/Турка)"}
+  {value: "грубый", text: "Грубый (Френч/Дрип/Пуровер)"},
+  {value: "средний", text: "Средний (Эспрессо)"},
+  {value: "мелкий", text: "Мелкий (Турка)"}
 ];
 
 // Display metadata from menu

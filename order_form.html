@@ -33,14 +33,59 @@
     #userName { font-size: 15px; color: var(--muted); margin-bottom: 16px; font-weight: 500; }
 
     /* Card-like details */
-    details{background:var(--surface);border-radius:var(--radius);box-shadow:var(--elev-1);overflow:hidden;margin-bottom:12px;border:1px solid rgba(16,24,40,0.04);}
-    summary{display:flex;align-items:center;justify-content:space-between;padding:14px 16px;cursor:pointer;list-style:none;font-weight:600;color:var(--on-surface);font-size:15px;}
-    summary:hover{background:rgba(30,136,229,0.03);}
+    details{background:var(--surface);border-radius:var(--radius);box-shadow:var(--elev-1);overflow:hidden;margin-bottom:12px;border:1px solid rgba(16,24,40,0.04);transition:all 0.3s ease;}
+    details[open]{background:rgba(30,136,229,0.02);border-color:rgba(30,136,229,0.15);}
+    
+    summary{display:flex;align-items:center;justify-content:space-between;padding:14px 16px;cursor:pointer;list-style:none;font-weight:600;color:var(--on-surface);font-size:15px;transition:all 0.2s ease;}
+    summary:hover{background:rgba(30,136,229,0.05);}
+    
+    /* Subcategory distinction - nested details */
+    details > details { margin-left: 8px; margin-top: 8px; margin-bottom: 8px; border-left: 3px solid rgba(30,136,229,0.1); }
+    details > details > summary { font-size: 14px; color: var(--muted); padding: 12px 16px; }
+    details > details > summary:hover { background: rgba(30,136,229,0.04); color: var(--on-surface); }
     
     /* Custom marker/arrow */
     summary::-webkit-details-marker { display: none; }
     summary:after { content: "+"; font-size: 18px; color: var(--primary); font-weight: bold; }
-    details[open] summary:after { content: "−"; }
+    details[open] > summary:after { content: "−"; }
+
+    /* Details content animation */
+    details[open] > div {
+        animation: slideDown 0.3s ease;
+    }
+    
+    @keyframes slideDown {
+        from { opacity: 0; transform: translateY(-10px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Back to top button */
+    #backToTop {
+        position: fixed;
+        bottom: 80px;
+        right: 20px;
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, var(--primary), #1976d2);
+        color: white;
+        border: none;
+        cursor: pointer;
+        display: none;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 4px 12px rgba(30,136,229,0.3);
+        transition: all 0.3s ease;
+        z-index: 1000;
+        font-size: 24px;
+    }
+    #backToTop:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 6px 16px rgba(30,136,229,0.4);
+    }
+    #backToTop:active {
+        transform: translateY(0);
+    }
 
     /* Product row */
     .product{display:flex;align-items:center;justify-content:space-between;padding:12px 16px;border-top:1px solid rgba(16,24,40,0.03);gap:12px;flex-wrap:wrap;background:transparent;}
@@ -137,6 +182,12 @@
       </div>
     </header>
 
+    <div id="menuMetadata" style="display:none; background:rgba(30,136,229,0.08); color:var(--muted); padding:10px 16px; border-radius:8px; margin-bottom:16px; font-size:12px; border:1px solid rgba(30,136,229,0.1);">
+      <span>📦 <span id="productsCount">0</span> товаров</span>
+      <span style="margin-left:12px;">🏷️ <span id="categoriesCount">0</span> категорий</span>
+      <span style="margin-left:12px;">📅 Обновлено: <span id="updatedAt">--</span></span>
+    </div>
+
     <div id="userName"></div>
 
     <section id="menu"></section>
@@ -163,6 +214,8 @@
         Разработка Stanislav Bolshakov (tg: <a href="https://t.me/delirium">@delirium</a>)
     </footer>
   </main>
+
+  <button id="backToTop" onclick="scrollToTop()">↑</button>
 
   <script src="app.js"></script>
 </body>

@@ -9,6 +9,37 @@ const GRIND_LEVELS = [
   {value: "мелкий", text: "Мелкий (Эспрессо/Турка)"}
 ];
 
+// Display metadata from menu
+function displayMetadata() {
+    const metadata = menuData?.metadata;
+    if (metadata) {
+        const metadataDiv = document.getElementById('menuMetadata');
+        const productsCount = document.getElementById('productsCount');
+        const categoriesCount = document.getElementById('categoriesCount');
+        const updatedAt = document.getElementById('updatedAt');
+        
+        if (metadataDiv && productsCount && categoriesCount && updatedAt) {
+            productsCount.textContent = metadata.products_count || 0;
+            categoriesCount.textContent = metadata.categories_count || 0;
+            
+            // Format the updated_at date nicely
+            if (metadata.updated_at) {
+                const date = new Date(metadata.updated_at);
+                const options = { 
+                    day: '2-digit', 
+                    month: 'short', 
+                    year: 'numeric',
+                    hour: '2-digit',
+                    minute: '2-digit'
+                };
+                updatedAt.textContent = date.toLocaleDateString('ru-RU', options);
+            }
+            
+            metadataDiv.style.display = 'block';
+        }
+    }
+}
+
 // --- Init Logic ---
 async function initWebApp() {
     if (window.Telegram && window.Telegram.WebApp) {
@@ -34,6 +65,7 @@ async function initWebApp() {
                 throw new Error('Failed to load menu data');
             }
             menuData = await response.json();
+            displayMetadata(); // Display metadata
             renderMenu();
         } catch (error) {
             console.error('Error loading menu:', error);
@@ -49,6 +81,7 @@ async function initWebApp() {
             const response = await fetch('menu.json');
             if (!response.ok) throw new Error('Failed to load menu data');
             menuData = await response.json();
+            displayMetadata(); // Display metadata
             renderMenu();
         } catch (error) {
             console.error('Error loading menu:', error);
@@ -80,7 +113,10 @@ function renderMenu() {
     const menuDiv = document.getElementById('menu');
     menuDiv.innerHTML = '';
 
-    for (const [category, subcats] of Object.entries(menuData)) {
+    // Handle new structure with metadata
+    const dataToRender = menuData.data || menuData;
+
+    for (const [category, subcats] of Object.entries(dataToRender)) {
       const catDetails = document.createElement('details');
       const catSummary = document.createElement('summary');
       catSummary.textContent = category;
@@ -266,5 +302,25 @@ function handleSubmit() {
         }
     }
 }
+
+// Scroll to top function
+window.scrollToTop = function() {
+    window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+    });
+};
+
+// Show/hide back to top button based on scroll position
+window.addEventListener('scroll', function() {
+    const backToTopBtn = document.getElementById('backToTop');
+    if (backToTopBtn) {
+        if (window.scrollY > 300) {
+            backToTopBtn.style.display = 'flex';
+        } else {
+            backToTopBtn.style.display = 'none';
+        }
+    }
+});
 
 initWebApp();

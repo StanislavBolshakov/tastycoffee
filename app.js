@@ -19,6 +19,8 @@ function displayMetadata() {
     const metadataDiv = document.getElementById('menuMetadata');
     const updatedAt = document.getElementById('updatedAt');
     
+    if (!metadataDiv || !updatedAt) return;
+
     if (metadata.updated_at) {
         const date = new Date(metadata.updated_at);
         const options = { 

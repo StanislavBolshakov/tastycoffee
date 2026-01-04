@@ -1,7 +1,7 @@
 let cart = {};
 let productCounter = 0;
-let user = null;
 let menuData = null;
+
 const MAX_QTY = 10;
 const GRIND_LEVELS = [
   {value: "грубый", text: "Грубый (Френч/Дрип/Пуровер)"},
@@ -9,84 +9,61 @@ const GRIND_LEVELS = [
   {value: "мелкий", text: "Мелкий (Турка)"}
 ];
 
-// Display metadata from menu
+const SCROLL_THRESHOLD = 300;
+const BORDER_RESET_DELAY = 2000;
+
 function displayMetadata() {
     const metadata = menuData?.metadata;
-    if (metadata) {
-        const metadataDiv = document.getElementById('menuMetadata');
-        const productsCount = document.getElementById('productsCount');
-        const categoriesCount = document.getElementById('categoriesCount');
-        const updatedAt = document.getElementById('updatedAt');
-        
-        if (metadataDiv && productsCount && categoriesCount && updatedAt) {
-            productsCount.textContent = metadata.products_count || 0;
-            categoriesCount.textContent = metadata.categories_count || 0;
-            
-            // Format the updated_at date nicely
-            if (metadata.updated_at) {
-                const date = new Date(metadata.updated_at);
-                const options = { 
-                    day: '2-digit', 
-                    month: 'short', 
-                    year: 'numeric',
-                    hour: '2-digit',
-                    minute: '2-digit'
-                };
-                updatedAt.textContent = date.toLocaleDateString('ru-RU', options);
-            }
-            
-            metadataDiv.style.display = 'block';
-        }
+    if (!metadata) return;
+
+    const metadataDiv = document.getElementById('menuMetadata');
+    const productsCount = document.getElementById('productsCount');
+    const categoriesCount = document.getElementById('categoriesCount');
+    const updatedAt = document.getElementById('updatedAt');
+    
+    if (!metadataDiv || !productsCount || !categoriesCount || !updatedAt) return;
+
+    productsCount.textContent = metadata.products_count || 0;
+    categoriesCount.textContent = metadata.categories_count || 0;
+    
+    if (metadata.updated_at) {
+        const date = new Date(metadata.updated_at);
+        const options = { 
+            day: '2-digit', 
+            month: 'short', 
+            year: 'numeric',
+            hour: '2-digit',
+            minute: '2-digit'
+        };
+        updatedAt.textContent = date.toLocaleDateString('ru-RU', options);
     }
+    
+    metadataDiv.style.display = 'block';
 }
 
-// --- Init Logic ---
 async function initWebApp() {
-    if (window.Telegram && window.Telegram.WebApp) {
+    if (window.Telegram?.WebApp) {
         const tg = window.Telegram.WebApp;
         tg.ready();
-        tg.expand(); 
+        tg.expand();
+    }
 
-        if (tg.initDataUnsafe && tg.initDataUnsafe.user) {
-            user = tg.initDataUnsafe.user;
-            const name = user.first_name || user.username || "друг";
-            document.getElementById('userName').textContent = `Привет, ${name}! Выберите напитки ☕`;
-        } else {
-            document.getElementById('userName').textContent = "Выберите напитки ☕";
-        }
+    document.getElementById('submitBtn').addEventListener('click', handleSubmit);
+    await loadMenuData();
+}
 
-        const submitBtn = document.getElementById('submitBtn');
-        submitBtn.addEventListener('click', handleSubmit);
-        
-        // Load menu data asynchronously
-        try {
-            const response = await fetch('https://stanislavbolshakov.github.io/tastycoffee/menu.json');
-            if (!response.ok) {
-                throw new Error('Failed to load menu data');
-            }
-            menuData = await response.json();
-            displayMetadata(); // Display metadata
-            renderMenu();
-        } catch (error) {
-            console.error('Error loading menu:', error);
-            // Fallback: Show an error message or use hardcoded data
-            document.getElementById('menu').innerHTML = `<p style="color: red; text-align: center;">Ошибка загрузки меню. Попробуйте позже.<br><small style="font-size:11px;">${error.message}</small></p>`;
+async function loadMenuData() {
+    try {
+        const response = await fetch('https://stanislavbolshakov.github.io/tastycoffee/menu.json');
+        if (!response.ok) {
+            throw new Error('Failed to load menu data');
         }
-    } else {
-        document.getElementById('userName').textContent = "Режим предпросмотра";
-        document.getElementById('submitBtn').addEventListener('click', handleSubmit);
-        
-        // Load menu data (same try-catch as above)
-        try {
-            const response = await fetch('https://stanislavbolshakov.github.io/tastycoffee/menu.json');
-            if (!response.ok) throw new Error('Failed to load menu data');
-            menuData = await response.json();
-            displayMetadata(); // Display metadata
-            renderMenu();
-        } catch (error) {
-            console.error('Error loading menu:', error);
-            document.getElementById('menu').innerHTML = `<p style="color: red; text-align: center;">Ошибка загрузки меню. Попробуйте позже.<br><small style="font-size:11px;">${error.message}</small></p>`;
-        }
+        menuData = await response.json();
+        displayMetadata();
+        renderMenu();
+    } catch (error) {
+        console.error('Error loading menu:', error);
+        document.getElementById('menu').innerHTML = `<p style="color: red; text-align: center;">Ошибка загрузки меню. Попробуйте позже.<br><small style="font-size:11px;">${error.message}</small></p>`;
     }
 }
 
@@ -94,26 +71,23 @@ function updateButtonState() {
     const hasItems = Object.values(cart).some(item => item.qty > 0);
     const submitBtn = document.getElementById('submitBtn');
     const commentContainer = document.getElementById('commentContainer');
+    const clearBtn = document.getElementById('clearBtn');
 
-    if(submitBtn) {
+    if (submitBtn) {
         submitBtn.disabled = !hasItems;
         submitBtn.textContent = hasItems ? `Оформить заказ` : "Корзина пуста";
     }
     
-    const clearBtn = document.getElementById('clearBtn');
-    if(clearBtn) clearBtn.style.display = hasItems ? 'block' : 'none';
-    
-    // Show comment field only if there are items
-    if(commentContainer) commentContainer.style.display = hasItems ? 'block' : 'none';
+    if (clearBtn) clearBtn.style.display = hasItems ? 'block' : 'none';
+    if (commentContainer) commentContainer.style.display = hasItems ? 'block' : 'none';
 }
 
 function renderMenu() {
-    if (!menuData) return; // Ensure data is loaded
+    if (!menuData) return;
 
     const menuDiv = document.getElementById('menu');
     menuDiv.innerHTML = '';
 
-    // Handle new structure with metadata
     const dataToRender = menuData.data || menuData;
 
     for (const [category, subcats] of Object.entries(dataToRender)) {
@@ -139,7 +113,6 @@ function renderMenu() {
           prodDiv.innerHTML = `
             <div class="left">
               <h4>${product.name} - ${product.weight}г</h4>
-              <div class="metaSmall">${product.description || ''}</div>
             </div>
             <div class="right">
               <div style="display:flex;align-items:center;gap:8px">
@@ -166,7 +139,7 @@ function renderMenu() {
             grind: '',
             name: product.name,
             price: product.price_final,
-            weight: product.weight, // Weight stored here
+            weight: product.weight,
             type: product.type
           };
 
@@ -195,13 +168,13 @@ window.changeQty = function(prodId, delta) {
     if (delta > 0 && item.type === 'ground_coffee') {
         const grindSelect = document.querySelector(`#grind_${prodId}`);
         if (grindSelect && !grindSelect.value) {
-            if (window.Telegram && window.Telegram.WebApp && window.Telegram.WebApp.showAlert) { 
+            if (window.Telegram?.WebApp?.showAlert) { 
                 window.Telegram.WebApp.showAlert('Пожалуйста, выберите помол перед добавлением.'); 
             } else {
                 alert('Пожалуйста, выберите помол.');
             }
             grindSelect.style.borderColor = 'red';
-            setTimeout(() => grindSelect.style.borderColor = 'rgba(16,24,40,0.06)', 2000);
+            setTimeout(() => grindSelect.style.borderColor = 'rgba(16,24,40,0.06)', BORDER_RESET_DELAY);
             return;
         }
     }
@@ -228,7 +201,7 @@ window.clearCart = function() {
         if (grindSelect) grindSelect.value = '';
       });
       updateCart();
-      document.getElementById('orderComment').value = ''; // Clear comment
+      document.getElementById('orderComment').value = '';
     }
 };
 
@@ -237,6 +210,7 @@ function updateCart() {
     const totalSpan = document.getElementById('total');
     cartList.innerHTML = '';
     let total = 0;
+    
     Object.entries(cart).forEach(([id, item]) => {
       if (item.qty > 0) {
         const li = document.createElement('li');
@@ -247,14 +221,12 @@ function updateCart() {
         total += item.price * item.qty;
       }
     });
+    
     totalSpan.textContent = total;
     updateButtonState();
 }
 
 function handleSubmit() {
-    let name = 'Гость';
-    if (user && user.first_name) name = user.first_name;
-    
     const comment = document.getElementById('orderComment').value;
 
     try {
@@ -265,15 +237,14 @@ function handleSubmit() {
                 throw new Error(`Укажите помол для: ${item.name}`);
             }
             
-            // Calculate total weight for the order
             const itemWeight = (item.weight || 0) * item.qty;
             totalWeight += itemWeight;
 
             return {
                 name: item.name,
                 quantity: item.qty,
-                weight: item.weight, // Sending single item weight
-                total_item_weight: itemWeight, // Sending total weight for this line item
+                weight: item.weight,
+                total_item_weight: itemWeight,
                 price: item.price,
                 type: item.type,
                 grind_level: item.grind || undefined
@@ -283,19 +254,18 @@ function handleSubmit() {
         if (items.length === 0) return;
 
         const data = {
-            name,
-            user_id: user?.id || null,
+            name: 'Гость',
             comment: comment, 
             items,
             total_weight: totalWeight, 
             total_price: parseFloat(document.getElementById('total').textContent) || 0
         };
 
-        if (window.Telegram && window.Telegram.WebApp) {
+        if (window.Telegram?.WebApp) {
             window.Telegram.WebApp.sendData(JSON.stringify(data));
         }
     } catch (err) {
-        if (window.Telegram && window.Telegram.WebApp) {
+        if (window.Telegram?.WebApp) {
             window.Telegram.WebApp.showAlert(err.message);
         } else {
             alert(err.message);
@@ -303,7 +273,6 @@ function handleSubmit() {
     }
 }
 
-// Scroll to top function
 window.scrollToTop = function() {
     window.scrollTo({
         top: 0,
@@ -311,15 +280,14 @@ window.scrollToTop = function() {
     });
 };
 
-// Show/hide back to top button based on scroll position
 window.addEventListener('scroll', function() {
     const backToTopBtn = document.getElementById('backToTop');
-    if (backToTopBtn) {
-        if (window.scrollY > 300) {
-            backToTopBtn.style.display = 'flex';
-        } else {
-            backToTopBtn.style.display = 'none';
-        }
+    if (!backToTopBtn) return;
+    
+    if (window.scrollY > SCROLL_THRESHOLD) {
+        backToTopBtn.style.display = 'flex';
+    } else {
+        backToTopBtn.style.display = 'none';
     }
 });
 

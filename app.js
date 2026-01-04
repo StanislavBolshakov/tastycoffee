@@ -17,12 +17,7 @@ function displayMetadata() {
     if (!metadata) return;
 
     const metadataDiv = document.getElementById('menuMetadata');
-    const productsCount = document.getElementById('productsCount');
-    const categoriesCount = document.getElementById('categoriesCount');
     const updatedAt = document.getElementById('updatedAt');
-    
-    productsCount.textContent = metadata.products_count || 0;
-    categoriesCount.textContent = metadata.categories_count || 0;
     
     if (metadata.updated_at) {
         const date = new Date(metadata.updated_at);

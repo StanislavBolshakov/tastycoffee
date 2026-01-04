@@ -21,8 +21,6 @@ function displayMetadata() {
     const categoriesCount = document.getElementById('categoriesCount');
     const updatedAt = document.getElementById('updatedAt');
     
-    if (!metadataDiv || !productsCount || !categoriesCount || !updatedAt) return;
-
     productsCount.textContent = metadata.products_count || 0;
     categoriesCount.textContent = metadata.categories_count || 0;
     
